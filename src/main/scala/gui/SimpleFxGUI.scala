@@ -12,13 +12,11 @@ object SimpleFxGUI extends JFXApp3:
   override def start(): Unit =
     val pngImage = new Image("/cards/backs/blue.png")
     val imageView = new ImageView(pngImage)
-    imageView.onMouseClicked = _ =>
-      println("Image clicked!")
+    imageView.onMouseClicked = _ => println("Image clicked!")
 
     val button = new Button:
       text = "Click me"
-      onAction = _ =>
-        println("Hello, ScalaFX!")
+      onAction = _ => println("Hello, ScalaFX!")
 
     stage = new PrimaryStage:
       title = "Simple ScalaFX GUI"
@@ -32,6 +30,5 @@ object SimpleFxGUI extends JFXApp3:
           GridPane.setConstraints(imageView, 0, 0)
           // Set constraints for Button
           GridPane.setConstraints(button, 1, 0)
-        onCloseRequest = _ =>
-          Platform.exit()
+        onCloseRequest = _ => Platform.exit()
       sizeToScene()

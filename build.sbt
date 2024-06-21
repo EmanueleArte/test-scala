@@ -13,9 +13,6 @@ lazy val root = project
     libraryDependencies += "org.scalactic" %% "scalactic" % "3.2.18",
     libraryDependencies += "org.scalatest" %% "scalatest" % "3.2.18" % "test",
 
-    /* Scala Swing */
-    libraryDependencies += "org.scala-lang.modules" %% "scala-swing" % "3.0.0",
-
     /* ScalaFX */
     libraryDependencies += "org.scalafx" %% "scalafx" % "22.0.0-R33",
     libraryDependencies ++= {
@@ -37,4 +34,12 @@ lazy val root = project
     /* Wartremover */
     wartremoverErrors ++= Warts.unsafe,
     wartremoverWarnings ++= Warts.unsafe
+  )
+  .enablePlugins(AssemblyPlugin, WartRemover)
+  .settings(
+    assembly / assemblyJarName := "app.jar",
+    assembly / assemblyMergeStrategy := {
+      case PathList("META-INF", xs @ _*) => MergeStrategy.discard
+      case x => MergeStrategy.first
+    }
   )
